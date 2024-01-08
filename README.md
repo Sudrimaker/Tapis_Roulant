@@ -30,3 +30,15 @@ Selectionner dans le code l'objet à ejecter,Allumer l'allimentation externes 12
 
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+Utilisation du code
