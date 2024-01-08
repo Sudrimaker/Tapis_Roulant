@@ -34,6 +34,11 @@ Selectionner dans le code l'objet à ejecter,Allumer l'allimentation externes 12
 
 
 
+Utilisation du code IA : 
+
+Le code IA est tiré de l'IA de détection d'objet d'opencv YOLO (You Only Look Once), on utilise ici la v4. Yolov4.cgf et .weights sont donc les fichiers utile au fonctionnement de l'IA. "coco.names" sert à définir les objets reconnaisable. Le code sert à faire fonctionner la pale a éjecter. Pour toute les info pour utiliser les servo moteur sur une rasberry : https://raspberry-pi.fr/servomoteur-raspberry-pi/
+et il sert à utiliser un capteur infrarouge
+
 
 
 
