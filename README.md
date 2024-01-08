@@ -1,4 +1,4 @@
-#Tapis roulant à tri optique
+## Tapis roulant à tri optique
 
 Ce projet à été créé par Thomas Lamy, Leynaïck Duthieuw ainsi que Charlilou Maes dans le cadre du parcours innovation en Spé. Son objectif est de détecter les objetsindésirable et de les ejecter du tapis 
 
@@ -15,7 +15,7 @@ Ce projet à été créé par Thomas Lamy, Leynaïck Duthieuw ainsi que Charlilo
 
 ## Schéma de câblage
 
-![Schéma de câblage](https://user-images.githubusercontent.com/84771913/228485957-33b3f8e9-cded-47ab-9c0c-65ebda89434b.png)
+![Schéma de câblage]("URL_image")
 
 Connectez les servomoteurs aux broches 9 et 10 de l'Arduino. Connectez l'interrupteur à la broche 2 de l'Arduino. Assurez-vous d'utiliser une résistance de pull-up pour maintenir une lecture stable lorsque l'interrupteur est ouvert.
 
