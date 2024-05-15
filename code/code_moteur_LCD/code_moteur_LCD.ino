@@ -1,31 +1,38 @@
 #include <Arduino.h>
+#include <Servo.h>
+
+#include <LiquidCrystal.h>
+#include "A4988.h"
 
 //LCD
-#include <LiquidCrystal.h>
 const int rs = 12, en = 11, d4 = 10, d5 = 9, d6 = 8, d7 = 7;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
 //StepMotor
-#include "A4988.h"
 int RPM = 120;  
 int DIR = 5;
 int STEP = 6;
-int servo_pin = 4;
-int IRPin = 3;
 int MOTOR_STEPS_P = 400;  //1.8 ° per steps
 A4988 stepper(MOTOR_STEPS_P, DIR, STEP);
-//IR
-#include <Servo.h>
-const int sensorPin = A2;  // Pin connected to sensor
-int sensorVal;
-//servo
-Servo eject;
 
-int value;
+//servo
+int servo_pin = 4;
+Servo eject;
 int detect;
 
+//capteur IR
+int IRPin = 3;
+const int sensorPin = A2;  // Pin connected to sensor
+int sensorVal;
+int value;
+
+//Rasp
+int raspberry_pin=A2;
+int rasp_val;
 
 void setup() {
   pinMode(sensorPin, INPUT);
+  //pinMode(raspberry_pin,INPUT);
   stepper.begin(RPM);
   stepper.enable();
   eject.attach(servo_pin);
@@ -36,16 +43,20 @@ void setup() {
 }
 void loop() {
   sensorVal = analogRead(sensorPin);
-  // Si le capteur infrarouge est activé
-  Serial.println(digitalRead(IRPin));
+  rasp_val=analogRead(raspberry_pin);
+  Serial.println(rasp_val);
 
-  if (sensorVal < 200) {
-    stepper.move(100);
-    detection();
-  }
+
   if (sensorVal > 800) {
+    stepper.move(100);
+    if (rasp_val == 1){
+      Serial.println("Signal du rasp, objet détecté");
+      detection();
+      }
+  }
+  
+  if (sensorVal< 200) {
     stepper.move(-100);
-    detection();
   }
   //un tour
   delay(1);
@@ -53,16 +64,19 @@ void loop() {
 
 
 void detection() {
+  // fait avancer le tapis
 
-  if (digitalRead(IRPin) == LOW) {
+  //attend que l'objet arrive
+  while (digitalRead(IRPin) == 1){
+     stepper.move(100);
+     delay(1);
+  }
+  if (digitalRead(IRPin) == 0) {
+    Serial.println("Détection !");
     // Déplacer le servomoteur à 180 degrés
-    lcd.print("hello, world!");
     eject.write(180);
-     // Attendre 1 seconde
-    // Ramener le servomoteur à 0 degré
     stepper.move(800);
-
+    // Ramener le servomoteur à 0 degré
     eject.write(90);
-
   }
 }
