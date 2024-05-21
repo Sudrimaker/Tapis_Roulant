@@ -1,6 +1,6 @@
 ## Tapis roulant à tri optique
 
-Ce projet à été créé par Thomas Lamy, Leynaïck Duthieuw ainsi que Charlilou Maes dans le cadre du parcours innovation en Spé. Son objectif est de détecter les objetsindésirable et de les ejecter du tapis 
+Ce projet à été créé par Thomas Lamy, Leynaïck Duthieuw ainsi que Charlilou Maes dans le cadre du parcours innovation en Spé. Son objectif est de détecter les objets indésirable et de les ejecter du tapis 
 
 ## Composants requis
 
